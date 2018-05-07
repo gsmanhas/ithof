@@ -1,0 +1,80 @@
+<style>
+body{
+background: none !important;
+}
+footer{ display: none; }
+</style>
+<div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="x_panel" style="width: 50%;margin-left: 25%;margin-top: 5%;">
+                <div class="x_title">
+                  <h2>Signup <small></small></h2>
+                  <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                  </ul>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                  <br>
+				  <%= form_for(resource,html: {class: "form-horizontal form-label-left"}, as: resource_name, url: registration_path(resource_name)) do |f| %>
+				  <%= devise_error_messages! %>
+				   <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">First Name <span class="required">*</span>
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+					   <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", :placeholder => "First Name",:class => "form-control has-feedback-left",:id=> "inputSuccess5" %>
+                      <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                      </div>
+                    </div>
+					
+					
+					 <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Last Name <span class="required">*</span>
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+					   <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", :placeholder => "Last Name",:class => "form-control has-feedback-left",:id=> "inputSuccess6" %>
+                      <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                      </div>
+                    </div>
+					
+					
+                    <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Email <span class="required">*</span>
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+					   <%= f.email_field :email, autofocus: true, autocomplete: "email", :placeholder => "Email",:class => "form-control has-feedback-left",:id=> "inputSuccess4" %>
+                      <span class="fa fa-envelope form-control-feedback left" aria-hidden="true"></span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Password <span class="required">*</span>
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                       
+					   <% if @minimum_password_length %>			
+						<%= f.password_field :password, autocomplete: "off" , :placeholder => "Password",:class => "form-control has-feedback-left",:id=> "password" %>
+						<span class="fa fa-key form-control-feedback left" aria-hidden="true"></span>
+						<em>(<%= @minimum_password_length %> characters minimum)</em>
+						<% end %><br />
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Confirm Password</label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+					<%= f.password_field :password_confirmation, autocomplete: "off"  , :placeholder => "Confirm Password",:class => "form-control has-feedback-left",:id=> "confirm_password"  %>
+					<span class="fa fa-key form-control-feedback left" aria-hidden="true"></span>
+                      </div>
+                    </div>
+                     
+                    <div class="ln_solid"></div>
+                    <div class="form-group">
+                      <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                        <button type="reset" class="btn btn-danger">Cancel</button>
+                          <%= f.submit "Sign up" ,:class => "btn btn-primary" %>
+                      </div>
+                    </div>
+
+                  <% end %>	
+                </div>
+              </div>
+</div>

@@ -1,0 +1,53 @@
+<style>
+body{
+background: none !important;
+}
+footer{ display: none; }
+</style>
+<div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="x_panel" style="width: 50%;margin-left: 25%;margin-top: 5%;">
+			  
+                <div class="x_title">
+                  <h2>Sign In<small></small></h2>
+                  
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                  <br>
+				  <%= form_for(resource,html: {class: "form-horizontal form-label-left"}, as: resource_name, url: session_path(resource_name)) do |f| %>
+				  <%= devise_error_messages! %>
+                    <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Email <span class="required">*</span>
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+					   <%= f.email_field :email, autofocus: true, autocomplete: "email", :placeholder => "Email",:class => "form-control has-feedback-left",:id=> "inputSuccess4" %>
+                      <span class="fa fa-envelope form-control-feedback left" aria-hidden="true"></span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Password <span class="required">*</span>
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                     <%= f.password_field :password, autocomplete: "off"  , :placeholder => "Password",:class => "form-control has-feedback-left",:id=> "password"  %>
+					  <span class="fa fa-key form-control-feedback left" aria-hidden="true"></span>
+					 <br />
+                      </div>
+                    </div>
+                                      <div class="ln_solid"></div>
+                    <div class="form-group">
+                      <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-5">
+                        <button type="reset" class="btn btn-danger">Cancel</button>
+                          <%= f.submit "Sign In" ,:class => "btn btn-primary" %>
+                      </div>
+                    </div>
+
+                  <% end %>	
+				  <div class="col-md-12 col-sm-12 col-xs-12" style="text-align: center;">
+				   <h3>International Tennis Hall of Fame</h3>
+                  <p>©2018 All Rights Reserved</p>
+                </div>
+                </div>
+				<div>             
+                </div>
+              </div>
+</div>

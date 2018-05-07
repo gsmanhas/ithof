@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  section1: MyText
+  section2: MyText
+  video1: MyText
+  video2: MyText
+  video3: MyText
+  facebook: MyText
+  twitter: MyText
+  gplus: MyText
+  youtube: MyText
+  mail: MyText
+  speech: MyText
+  adminemail: MyText
+
+two:
+  section1: MyText
+  section2: MyText
+  video1: MyText
+  video2: MyText
+  video3: MyText
+  facebook: MyText
+  twitter: MyText
+  gplus: MyText
+  youtube: MyText
+  mail: MyText
+  speech: MyText
+  adminemail: MyText

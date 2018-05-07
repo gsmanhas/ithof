@@ -1,0 +1,111 @@
+<div class="right_col" role="main">
+<div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="x_panel">
+                <div class="x_title">
+                  <h2>Landing Page content <small>different settings elements</small></h2>
+                  <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>                   
+                  </ul>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                  <br>
+					<%= form_for :landingpage,html: {class: "form-horizontal form-label-left input_mask"},local:true do |f| %>
+                    <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Section 1 <span class="required">*</span>
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">                      
+						 <%= f.text_field :section1,:class => "form-control col-md-7 col-xs-12",:id => "inputSuccess2", :placeholder => "Section 1 content" %>
+						<ul class="parsley-errors-list" id="parsley-id-5374"></ul>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Section 2 <span class="required">*</span>
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                         <%= f.text_field :section2,:class => "form-control col-md-7 col-xs-12",:id => "inputSuccess3", :placeholder => "Section 2 content" %><ul class="parsley-errors-list" id="parsley-id-0292"></ul>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">video 1*</label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                         <%= f.text_field :video1,:class => "form-control col-md-7 col-xs-12",:id => "inputSuccess4", :placeholder => "video 1 Url" %><ul class="parsley-errors-list" id="parsley-id-2391"></ul>
+                      </div>
+                    </div>
+                    
+					 <div class="form-group">
+                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">video 2*</label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                         <%= f.text_field :video2,:class => "form-control col-md-7 col-xs-12",:id => "inputSuccess5", :placeholder => "video 2 Url" %><ul class="parsley-errors-list" id="parsley-id-2391"></ul>
+                      </div>
+                    </div> 
+					<div class="form-group">
+                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">video 3*</label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <%= f.text_field :video3,:class => "form-control col-md-7 col-xs-12",:id => "inputSuccess6", :placeholder => "video 3 Url" %><ul class="parsley-errors-list" id="parsley-id-2391"></ul>
+                      </div>
+                    </div>
+					<div class="form-group">
+                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Facebook*</label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                         <%= f.text_field :facebook,:class => "form-control col-md-7 col-xs-12",:id => "inputSuccess7", :placeholder => "facebook Url" %></ul>
+                      </div>
+                    </div>
+					
+					<div class="form-group">
+                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Twitter*</label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                         <%= f.text_field :twitter,:class => "form-control col-md-7 col-xs-12",:id => "inputSuccess8", :placeholder => "twitter Url" %></ul>
+                      </div>
+                    </div>
+					
+					<div class="form-group">
+                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Google Plus*</label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                         <%= f.text_field :gplus,:class => "form-control col-md-7 col-xs-12",:id => "inputSuccess9", :placeholder => "google plus Url" %></ul>
+                      </div>
+                    </div>
+					
+					<div class="form-group">
+                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Youtube*</label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <%= f.text_field :youtube,:class => "form-control col-md-7 col-xs-12",:id => "inputSuccess10", :placeholder => "youtube Url" %><ul class="parsley-errors-list" id="parsley-id-2391"></ul>
+                      </div>
+                    </div>
+					
+					<div class="form-group">
+                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Speech*</label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                         <%= f.text_field :speech,:class => "form-control col-md-7 col-xs-12",:id => "inputSuccess11", :placeholder => "Speech Url" %></ul>
+                      </div>
+                    </div>
+					
+					<div class="form-group">
+                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">E-Mail*</label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <%= f.text_field :mail,:class => "form-control col-md-7 col-xs-12",:id => "inputSuccess12", :placeholder => "Email address" %></ul>
+                      </div>
+                    </div>
+					<div class="form-group">
+                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Admin E-Mail*</label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <%= f.text_field :adminemail,:class => "form-control col-md-7 col-xs-12",:id => "inputSuccess13", :placeholder => "Admin Email address" %></ul>
+                      </div>
+                    </div>
+                  
+                    <div class="ln_solid"></div>
+                    <div class="form-group">
+                      <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                        <button type="submit" class="btn btn-primary">Cancel</button>
+                        <button type="submit" class="btn btn-success">Submit</button>
+                      </div>
+                    </div>
+
+                 <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>

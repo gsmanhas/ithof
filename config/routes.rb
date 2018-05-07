@@ -1,10 +1,24 @@
 Rails.application.routes.draw do
+  devise_for :users
+
+  devise_for :models
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
    root 'plainpage#index'
-
+ #  get 'candidates/' => 'candidates#index'
+   #resources :candidates
+   resources :articles
+  # resources :candidates
+  match '/users',   to: 'users#index',   via: 'get'
+  get 'landingpage/' => 'landingpage#index'
+  match 'landingpage/new' => 'landingpage#create', via: :post
+  match 'landingpage/new' => 'landingpage#new', via: :get
+  get 'candidates/' => 'candidates#index'
+  match 'candidates/new' => 'candidates#new', via: :post
+  match 'candidates/new' => 'candidates#new', via: :get
+  match 'candidates/edit/:id' => 'candidates#edit', via: :get
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
@@ -53,4 +67,11 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+  # Rails.application.routes.draw do
+
+      # devise_for :users, controllers: {
+        # sessions: 'users/sessions'
+      # }
+    # end
+
 end

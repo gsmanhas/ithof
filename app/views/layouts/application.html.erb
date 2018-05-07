@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= content_for?(:title) ? yield(:title) : "GentelellaOnRails" %> </title>
+  <title><%= content_for?(:title) ? yield(:title) : "International Tennis Hall of Fame" %> </title>
 
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -16,9 +16,15 @@
   <% flash.each do |key, value| %>
       <div align="center" id="flash" class="alert alert-<%= key %>"><%= value %></div>
   <% end %>
+<% if controller_name == "registrations" && action_name == !"edit" %>
+<% elsif controller_name == "sessions" %>
+<% elsif controller_name == "registrations" && action_name == "new" %>
 
+<% else %>
 <%= render "partials/sidenav" %>
 <%= render "partials/topnav" %>
+<% end %>
+
 
 <%= yield %>
 
