@@ -8,13 +8,26 @@ def index
  def new
    @candidate = Candidate.new
   end
- def create
-   
-    params.permit!
+  
+ # def create
+	#render plain: params[:candidates].inspect
+    # params.permit!
+    # @candidate = Candidate.new(params[:candidates])
+    # @candidate.save
+    # flash[:success ] = "Candidate added Successfull"
+    # render 'index'
+ # end 
+ 
+ 
+def create
+	 params.permit!
     @candidate = Candidate.new(params[:candidates])
-    @candidate.save
-    flash[:success ] = "Candidate added Successfull"
-
+  if @candidate.save
+   # redirect_to action index, alert: "Watch it, mister!"
+   redirect_to :controller => 'candidates', :action => 'index'
+  else
+    render "new"
+  end
  end 
 
  def edit
