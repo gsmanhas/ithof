@@ -38,8 +38,8 @@
                          <%= f.text_field :last_name,:class => "form-control col-md-7 col-xs-12",:id => "inputSuccess5", :placeholder => "Last Name" %><ul class="parsley-errors-list" id="parsley-id-0292"></ul>
                       </div>
     </div>
-  
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+  <% abort(resource.unconfirmed_email); %>
+  <% if devise_mapping.confirmable? && (not resource.confirmed?) %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 
