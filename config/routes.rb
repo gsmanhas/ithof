@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   match 'landingpage/new' => 'landingpage#create', via: :post
   match 'landingpage/new' => 'landingpage#new', via: :get
   get 'candidates/' => 'candidates#index'
-  match 'candidates/new' => 'candidates#new', via: :post
+  match 'candidates/new' => 'candidates#create', via: :post
   match 'candidates/new' => 'candidates#new', via: :get
   match 'candidates/edit/:id' => 'candidates#edit', via: :get
   # Example of regular route:

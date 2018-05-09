@@ -9,7 +9,7 @@ def index
    @candidate = Candidate.new
   end
  def create
-   #render plain: params[:candidates].inspect
+   
     params.permit!
     @candidate = Candidate.new(params[:candidates])
     @candidate.save
