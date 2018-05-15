@@ -24,6 +24,7 @@ module GentelellaOnRails
     config.active_record.raise_in_transactional_callbacks = true
 
     config.assets.paths << Rails.root.join('vendor', 'assets', 'components', 'gentelella', 'production')
-
+	#ActionMailer::Base.default_url_options = {:host => request.host_with_port}
+	Rails.application.routes.default_url_options[:host] = '18.218.125.58:3000'
   end
 end

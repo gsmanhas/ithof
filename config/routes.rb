@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
-
+ # devise_for :users
   devise_for :models
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -19,6 +18,7 @@ Rails.application.routes.draw do
   match 'candidates/new' => 'candidates#create', via: :post
   match 'candidates/new' => 'candidates#new', via: :get
   match 'candidates/edit/:id' => 'candidates#edit', via: :get
+  devise_for :users, controllers: { confirmations: 'confirmations' }
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
@@ -68,7 +68,6 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
   # Rails.application.routes.draw do
-
       # devise_for :users, controllers: {
         # sessions: 'users/sessions'
       # }

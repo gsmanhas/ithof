@@ -32,15 +32,19 @@
           <ul class="nav side-menu">
             <li><a><i class="fa fa-home"></i> Candidates <span class="fa fa-chevron-down"></span></a>
               <ul class="nav child_menu" style="display: none">
-                <li><a href="/candidates">All Candidates</a>
-                <li><a href="/candidates/new">Add New Candidates</a>
-                </li>
+                <li><a href="/candidates">All Candidates</a></li>
+                <li><a href="/candidates/new">Add New Candidates</a></li>
               </ul>
             </li>
 			<li><a href="<%= root_url(:only_path => false) %>landingpage"><i class="fa fa-edit"></i> Landing Page setting</a></li>
 			
 			<li><a href="<%= root_url(:only_path => false) %>users"><i class="fa fa-user"></i> All Users</a></li>
- 
+			<li><a><i class="fa fa-bar-chart-o"></i> Votes <span class="fa fa-chevron-down"></span></a>
+              <ul class="nav child_menu" style="display: none">
+                <li><a href="/candidates">All Votes</a></li>
+                <li><a href="/candidates/new">Verified Votes</a></li>
+              </ul>
+            </li>	
           </ul>
         </div>
         
