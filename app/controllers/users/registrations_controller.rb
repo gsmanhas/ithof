@@ -13,7 +13,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def create
   #   super
   # end
-
+ # def edit
+  # @users = Users.find(params[:id])
+# end 
   # GET /resource/edit
   # def edit
   #   super

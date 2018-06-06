@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180515071032) do
+ActiveRecord::Schema.define(version: 20180531065533) do
 
   create_table "ar_internal_metadata", primary_key: "key", force: :cascade do |t|
     t.string   "value"
@@ -117,6 +117,21 @@ ActiveRecord::Schema.define(version: 20180515071032) do
     t.datetime "updated_at",                                      null: false
     t.string   "first_name",             limit: 255
     t.string   "last_name",              limit: 255
+    t.string   "avatar",                 limit: 255
   end
+
+  create_table "votes", force: :cascade do |t|
+    t.string   "player"
+    t.text     "email"
+    t.integer  "confirm"
+    t.string   "ip"
+    t.string   "time_zone"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "subscribe"
+    t.boolean  "confirmable", default: false
+  end
+
+  add_index "votes", [nil], name: "index_votes_on_confirmation_token", unique: true
 
 end

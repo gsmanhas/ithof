@@ -10,6 +10,159 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
+.leaders {
+    float: left;
+    width: 70%;
+	list-style: none;
+    margin-left: 165px;
+    margin-top: 20px;
+}
+.leaders li	{
+		margin-left: -40px;
+		height: 60px;
+		background: linear-gradient(to right, #008970, #005642);
+}
+.player_photo{
+	height: 60px;
+	width: 60px;
+	float: right;
+}
+.player_name {
+
+    float: left;
+    color: #fff;
+    font-size: 20px;
+    margin: 16px 0px 0px 20px;
+
+}
+.player_country {
+    color: #e1e723;
+    font-style: italic;
+    float: left;
+    margin: 25px 0px 0px 25px;
+
+}
+.player_photo {
+	background-size: cover !important;
+    height: 100px;
+    width: 100px;
+    float: right;
+    border-radius: 50px;
+    margin: -15px -29px 0px 0px;
+    border: solid #e1e723 3px;
+}
+.top {
+    border: solid #e1e723 1px;
+}
+.second {
+    width: 90%;
+    border-left: solid #e1e723 1px;
+    border-bottom: solid #e1e723 1px;
+}
+.third {
+    width: 70%;
+    border-left: solid #e1e723 1px;
+    border-bottom: solid #e1e723 1px;
+}
+.player_position {
+    float: left;
+    color: #e1e723;
+	font-size: 18px;
+}
+.top > .player_position::before {
+    font-family: "FontAwesome";
+    content:"\f077";
+}
+.second > .player_position::before {
+    font-family: "FontAwesome";
+    content:"\f068";
+}
+.third > .player_position::after {
+    font-family: "FontAwesome";
+    content:"\f078";
+}
+
+.black_over:before {
+  background-color: rgba(1,1,1,0.5);
+}
+.bottom_banner {
+  height:310px;
+  width: 100%;
+  display: inline-block;
+  vertical-align: top;
+  background: url(<%= asset_path "stadium.jpg" %>) no-repeat scroll 0px -200px transparent;
+  position: relative;
+}
+.bottom_banner * {
+    position: relative;
+}
+.overlay_new {
+  position: relative;
+}
+
+.overlay_new:before{
+  position: absolute;
+  content:" ";
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  display: block;
+  z-index:0;
+}
+
+.overlay_new:hover:before{
+  display: block;
+}
+
+.black:before {
+  background-color: rgba(1,1,1,0.5);
+}
+.bottom_banner_text {
+    color: #fff;
+    font-size: 52px;
+    font-weight: bold;
+    width: 65% !important;
+    float: left;
+    margin: 3% 0 0 17%;
+    text-align: center;
+}
+.donate_button {
+    border: solid #e1e723 2px;
+    width: 300px;
+    height: 50px;
+    float: left;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+	cursor: pointer;
+    margin: 20px 0px 0px 38%;
+}
+.donate_button a {
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+}
+.donate_button a:hover{
+text-decoration: none;
+}
+.donate_button:hover{
+background-color: rgba(225,231,35,0.5);
+}
+.donate_button:hover .donate_button a{
+color: #fff;
+}
+.checkmark{
+border: solid #e1e723 3px;
+}
+.footer_text{
+    color: #e1e723;
+    text-align: right;
+    font-size: 15px;
+    text-transform: uppercase;
+    margin: 30px 0px 0px auto;
+
+}
 </style>
     <script>
   jQuery(function(){
@@ -25,6 +178,14 @@
 	
 });
   </script>
+  <%= stylesheet_link_tag "voting" %>
+  <%= stylesheet_link_tag "lightbox" %>
+  <%= stylesheet_link_tag "video-js" %>
+  <%= stylesheet_link_tag "video-js" %>
+  <%= javascript_include_tag  "video" %>
+  <%= javascript_include_tag  "video" %>
+  <%= javascript_include_tag  "videojs-ie8.min" %>
+ 
 </head>
 
 
@@ -80,6 +241,9 @@
 			  </div>
 				<div class="col-md-12 col-sm-12 col-xs-12">
                  <div id="wizard" class="form_wizard wizard_horizontal">
+				 <% flash.each do |key, value| %>
+					<div class="alert alert-<%= key %>"><%= value %></div>
+				  <% end %>
                     <ul class="wizard_steps">
                       <li>
                         <a href="#step-1">
@@ -108,11 +272,13 @@
                      
                     </ul>
                     <div id="step-1">
-                    <ul class="col-sm-10 col-md-10 col-xs-10 col-sm-offset-2 col-md-offset-2 animated_ul">                
+					<%= form_for :votes,:url => "/votes/new",html: {class: "form-horizontal form-label-left input_mask"},local:true do |f| %>
+                    <ul class="col-sm-10 col-md-10 col-xs-10 col-sm-offset-2 col-md-offset-2 animated_ul">       
+					<% @candidate.reverse.each do |candidate| %>					
                     <li class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">                                       
-                        <div class="count" style="background:url('images/player.jpg') no-repeat scroll 0 0 transparent;background-size: cover;display: block;"></div>
+                        <div class="count" style="background:url('images/<%= candidate.avatar %>') no-repeat scroll 0 0 transparent;background-size: cover;display: block;"></div>
 						<div class="count_reverse" style="display: none;">
-						<div style="background:url('images/player.jpg') no-repeat scroll 0 0 transparent;background-size: cover;height:335px;"></div>
+						<div style="background:url('images/<%= candidate.avatar %>') no-repeat scroll 0 0 transparent;background-size: cover;height:335px;"></div>
 						<span class="overlay">
 							<div class="candidate_div">
 							<img src="images/logo_small.png" /><br />
@@ -121,123 +287,19 @@
 							</div>
 						</span>
 						</div>
-                          <h3 style="color: #fff;padding-left: 30px;padding-top: 15px;">Player Name</h3>
-                          <p style="color: #e1e723;margin: -4px 0px 0px 30px !important;font-size: 14px;">COUNTRY</p>
+                          <h3 style="color: #fff;padding-left: 30px;padding-top: 15px;"><%= candidate.first_name %></h3>
+                          <p style="color: #e1e723;margin: -4px 0px 0px 30px !important;font-size: 14px;">USA</p>
 						  <span class="check_box">				
 						  <label class="chk_container">
-						  <input type="checkbox">
+						  <%= f.check_box :"player[player_#{candidate.ID}]", {}, "1", ""  %>
+
 						  <span class="checkmark"></span>
 						</label>					  
 						  </span>
                     </li>
-					 <li class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">                                       
-                        <div class="count" style="background:url('images/player.jpg') no-repeat scroll 0 0 transparent;background-size: cover;display: block;"></div>
-						<div class="count_reverse" style="display: none;">
-						<div style="background:url('images/player.jpg') no-repeat scroll 0 0 transparent;background-size: cover;height:335px;"></div>
-						<span class="overlay">
-							<div class="candidate_div">
-							<img src="images/logo_small.png" /><br />
-							<span class="vp">VIEW PROFILE</span>
-							<span class="border"></span>
-							</div>
-						</span>
-						</div>
-                            <h3 style="color: #fff;padding-left: 30px;padding-top: 15px;">Player Name</h3>
-                         <p style="color: #e1e723;margin: -4px 0px 0px 30px !important;font-size: 14px;">COUNTRY</p>
-						  <span class="check_box">				
-						  <label class="chk_container">
-						  <input type="checkbox">
-						  <span class="checkmark"></span>
-						</label>					  
-						  </span>
-                    </li>
-					<li class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">                                       
-                        <div class="count" style="background:url('images/player.jpg') no-repeat scroll 0 0 transparent;background-size: cover;display: block;"></div>
-						<div class="count_reverse" style="display: none;">
-						<div style="background:url('images/player.jpg') no-repeat scroll 0 0 transparent;background-size: cover;height:335px;"></div>
-						<span class="overlay">
-							<div class="candidate_div">
-							<img src="images/logo_small.png" /><br />
-							<span class="vp">VIEW PROFILE</span>
-							<span class="border"></span>
-							</div>
-						</span>
-						</div>
-                           <h3 style="color: #fff;padding-left: 30px;padding-top: 15px;">Player Name</h3>
-                          <p style="color: #e1e723;margin: -4px 0px 0px 30px !important;font-size: 14px;">COUNTRY</p>
-						  <span class="check_box">				
-						  <label class="chk_container">
-						  <input type="checkbox">
-						  <span class="checkmark"></span>
-						</label>					  
-						  </span>
-                    </li>
-					<li class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">                                       
-                        <div class="count" style="background:url('images/player.jpg') no-repeat scroll 0 0 transparent;background-size: cover;display: block;"></div>
-						<div class="count_reverse" style="display: none;">
-						<div style="background:url('images/player.jpg') no-repeat scroll 0 0 transparent;background-size: cover;height:335px;"></div>
-						<span class="overlay">
-							<div class="candidate_div">
-							<img src="images/logo_small.png" /><br />
-							<span class="vp">VIEW PROFILE</span>
-							<span class="border"></span>
-							</div>
-						</span>
-						</div>
-                          <h3 style="color: #fff;padding-left: 30px;padding-top: 15px;">Player Name</h3>
-                          <p style="color: #e1e723;margin: -4px 0px 0px 30px !important;font-size: 14px;">COUNTRY</p>
-						  <span class="check_box">				
-						  <label class="chk_container">
-						  <input type="checkbox">
-						  <span class="checkmark"></span>
-						</label>					  
-						  </span>
-                    </li>
-					<li class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">                                       
-                        <div class="count" style="background:url('images/player.jpg') no-repeat scroll 0 0 transparent;background-size: cover;display: block;"></div>
-						<div class="count_reverse" style="display: none;">
-						<div style="background:url('images/player.jpg') no-repeat scroll 0 0 transparent;background-size: cover;height:335px;"></div>
-						<span class="overlay">
-							<div class="candidate_div">
-							<img src="images/logo_small.png" /><br />
-							<span class="vp">VIEW PROFILE</span>
-							<span class="border"></span>
-							</div>
-						</span>
-						</div>
-                           <h3 style="color: #fff;padding-left: 30px;padding-top: 15px;">Player Name</h3>
-                         <p style="color: #e1e723;margin: -4px 0px 0px 30px !important;font-size: 14px;">COUNTRY</p>
-						  <span class="check_box">				
-						  <label class="chk_container">
-						  <input type="checkbox">
-						  <span class="checkmark"></span>
-						</label>					  
-						  </span>
-                    </li>
-					<li class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">                                       
-                        <div class="count" style="background:url('images/player.jpg') no-repeat scroll 0 0 transparent;background-size: cover;display: block;"></div>
-						<div class="count_reverse" style="display: none;">
-						<div style="background:url('images/player.jpg') no-repeat scroll 0 0 transparent;background-size: cover;height:335px;"></div>
-						<span class="overlay">
-							<div class="candidate_div">
-							<img src="images/logo_small.png" /><br />
-							<span class="vp">VIEW PROFILE</span>
-							<span class="border"></span>
-							</div>
-						</span>
-						</div>
-                           <h3 style="color: #fff;padding-left: 30px;padding-top: 15px;">Player Name</h3>
-                          <p style="color: #e1e723;margin: -4px 0px 0px 30px !important;font-size: 14px;">COUNTRY</p>
-						  <span class="check_box">				
-						  <label class="chk_container">
-						  <input type="checkbox">
-						  <span class="checkmark"></span>
-						</label>					  
-						  </span>
-                    </li>
+					 <% end %>
                   </ul>
                  <div class="clearfix"></div>
-				 
 				  <div class="row x_title" style="border: none;margin-top: 40px;">
 					<div class="col-md-12 col-sm-12 col-xs-12">
 					  <h1 class="titles">Enter in your email address to register to vote.</h1>
@@ -245,23 +307,26 @@
 					  <div class="col-sm-3 col-md-3"></div>
                       <div class="col-sm-6 col-md-6">                    
                         <div class="input-group">
-                          <input type="text" class="form-control email_entry" placeholder="Email address">
+						    <%= f.text_field :email,:class => "form-control email_entry",:id => "voter_email", :placeholder => "Email address" %>
                           <span class="input-group-btn">
-                           <button type="button" class="btn btn-danger vote_btn">VOTE</button>
+                           <button type="submit" class="btn btn-danger vote_btn">VOTE</button>
                            </span>
                         </div>
 						<div class="input-group confirm_vote_section"> <span class="check_box2">				
 						  <label class="chk_container2">
-						  <input type="checkbox">
+						   <%= f.check_box :"subscribe", {}, "1", "0"  %>
 						  <div class="checkmark2"></div>
 						</label>					  
-						  </span><span class="confirm_vote_span">Sign me up for ongoing notifications 	 about this year's inductees.</span></div>
+						  </span><span class="confirm_vote_span">Sign me up for ongoing notifications about this year's inductees.</span></div>
                       </div>
+					  <%= f.hidden_field :"confirm",value:"0" %>
+					  <%= f.hidden_field :"ip",value:"#{request.remote_ip}" %>
 					  <div class="col-sm-3 col-md-3"></div>
                     </div>
 					</div>
 				  </div>
                     </div>
+					<% end %>
                     <div id="step-2">
                     
                     </div>
@@ -278,10 +343,80 @@
               </div>
 				</div> 
 				</div>
+			  <div style="background:url('<%= asset_path "divider.png" %>') repeat-x scroll 0 0 transparent;height: 55px;"></div>
               <div class="clearfix"></div>
-            
+            <div class="row">
+			  <div class="col-md-12 col-sm-12 col-xs-12">
+				  <div class="leaderboard">
+				   <div class="row x_title" style="border: none;margin-top: 53px;margin-left: 150px;float: left;"><div class="col-md-12 col-sm-12 col-xs-12">
+                  <h1 class="main_tx" style="font-size: 40px;color: #25282a;font-weight: bold;">TOP 3 FAN VOTE RECIPIENTS</h1>
+                    </div>					
+			      </div>
+				  <div style="font-size: 17px;float: left;width: 60%;margin: -40px 0px 0px 165px;color: #25282a;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque quis eros nisi. Sed vestibulum arcu lacus, vitae pharetra purus pharetra eu. Sed varius convallis mollis. Pellentesque varius urna quis viverra malesuada</div>
+				  </div>
+				  <ul class="leaders">
+				  <li class="top">
+				  <span style="height: 30px;width: 30px;border-radius: 25px;background-color: #fbc733;border: solid #fff 1px;margin-left: 30px;margin-top: 18px !important;float: left;padding: 0px 0px 0px 8px;color: #fff;font-size: 20px;">1</span>
+				  <span class="player_name">Player name</span>
+				  <span class="player_country">COUNTRY</span>
+				  <span class="player_position" style="margin:20px 0 0 62%;">1</span>
+				 <span class="player_photo" style="background:url('<%= asset_path "player.jpg" %>') repeat-x scroll 0 0 transparent;"></span>
+				  </li>
+				  
+				  <li class="second">
+				  <span style="height: 30px;width: 30px;border-radius: 25px;background-color: #b6b6b6;border: solid #fff 1px;margin-left: 30px;margin-top: 18px !important;float: left;padding: 0px 0px 0px 8px;color: #fff;font-size: 20px;">2</span>
+				  <span class="player_name">Player name</span>
+				  <span class="player_country">COUNTRY</span>
+				  <span class="player_position" style="margin:20px 0 0 55%;border: solid #e1e723 2px;width: 30px;border-radius: 50px;padding: 0px 0px 0px 6px;"></span>
+				  <span class="player_photo" style="background:url('<%= asset_path "player.jpg" %>') repeat-x scroll 0 0 transparent;"></span>
+				  </li>
+				  
+				   <li class="third">
+				   <span style="height: 30px;width: 30px;border-radius: 25px;background-color: #a97134;border: solid #fff 1px;margin-left: 30px;margin-top: 18px !important;float: left;padding: 0px 0px 0px 8px;color: #fff;font-size: 20px;">3</span>
+				  	<span class="player_name">Player name</span>
+				  <span class="player_country">COUNTRY</span>
+				  <span class="player_position" style="margin:15px 0 0 40%;">2</span>
+				   <span class="player_photo" style="background:url('<%= asset_path "player.jpg" %>') repeat-x scroll 0 0 transparent;"></span>
+				   </li>
+				  </ul>
+			  </div>
+		     </div>
         <br />
-       
+		<div class="row">
+		    <div class="col-md-12 col-sm-12 col-xs-12">
+			<div class="bottom_banner overlay_new black">
+			 <span class="bottom_banner_text">Share your passion for tennis and the players you love by donating today.</span>
+			 <span class="donate_button"><a href="#">DONATE</a></span>
+			</div>
+			</div>
+		</div>
+		<div class="row" style="background-color: #25282a;margin: 0 auto;width: 100%;padding: 20px;">
+		    <div class="col-md-12 col-sm-12 col-xs-12">
+			<div class="col-md-2 col-sm-2 col-xs-2" style="float: left;margin-left: 120px;"><img src="<%= asset_path "logo_bottom.png" %>" /></div><div class="col-md-2 col-sm-2 col-xs-2"></div><div class="col-md-8 col-sm-8 col-xs-8 footer_text">&#169; 2016 International Tennis hall of FAME, ITHF is a 501 (C)(3) organization</div>
+			</div>
+		</div>
+
+
+		<a class="example-image-link" href="<%= asset_path "logo_bottom.png" %>" data-lightbox="example-set" data-title="Click the right half of the image to move forward."><img class="example-image" src="<%= asset_path "logo_bottom.png" %>" alt="Golden Gate Bridge with San Francisco in distance"></a>
+		
+		<script>
+    NProgress.done();
+  </script>
+  <script type="text/javascript">
+	  lightbox.option({
+      "resizeDuration": 200,
+      "wrapAround": true
+    })
+</script>
+<script type="text/javascript">
+(function(){var gtConstEvalStartTime = new Date();function d(b){var a=document.getElementsByTagName("head")[0];a||(a=document.body.parentNode.appendChild(document.createElement("head")));a.appendChild(b)}function _loadJs(b){var a=document.createElement("script");a.type="text/javascript";a.charset="UTF-8";a.src=b;d(a)}function _loadCss(b){var a=document.createElement("link");a.type="text/css";a.rel="stylesheet";a.charset="UTF-8";a.href=b;d(a)}function _isNS(b){b=b.split(".");for(var a=window,c=0;c<b.length;++c)if(!(a=a[b[c]]))return!1;return!0}
+function _setupNS(b){b=b.split(".");for(var a=window,c=0;c<b.length;++c)a.hasOwnProperty?a.hasOwnProperty(b[c])?a=a[b[c]]:a=a[b[c]]={}:a=a[b[c]]||(a[b[c]]={});return a}window.addEventListener&&"undefined"==typeof document.readyState&&window.addEventListener("DOMContentLoaded",function(){document.readyState="complete"},!1);
+if (_isNS("google.translate.Element")){return}(function(){var c=_setupNS("google.translate._const");c._cest = gtConstEvalStartTime;gtConstEvalStartTime = undefined;c._cl="en";c._cuc="googleTranslateElementInit";c._cac="";c._cam="";c._ctkk=eval("((function(){var a\x3d3727912845;var b\x3d-3075836821;return 424233+\x27.\x27+(a+b)})())");var h="translate.googleapis.com";var s=(true?"https":window.location.protocol=="https:"?"https":"http")+"://";var b=s+h;c._pah=h;c._pas=s;c._pbi=b+"/translate_static/img/te_bk.gif";c._pci=b+"/translate_static/img/te_ctrl3.gif";c._pli=b+"/translate_static/img/loading.gif";c._plla=h+"/translate_a/l";c._pmi=b+"/translate_static/img/mini_google.png";c._ps=b+"/translate_static/css/translateelement.css";c._puh="translate.google.com";_loadCss(c._ps);_loadJs(b+"/translate_static/js/element/main.js");})();})();</script> 
+       <script type="text/javascript">
+	function googleTranslateElementInit() {
+	new google.translate.TranslateElement({pageLanguage: "en"}, "google_translate_element");
+	}
+	</script>
       </div>
       <!-- /page content -->
 
@@ -300,6 +435,11 @@
 
   <!-- /datepicker -->
   <!-- /footer content -->
+  <script>
+  jQuery(function() {
+  jQuery.cookie("tz", (new Date()).getTimezoneOffset());
+});
+ </script>
 </body>
 
 </html>

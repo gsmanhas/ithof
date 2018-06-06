@@ -10,6 +10,7 @@ Rails.application.routes.draw do
    #resources :candidates
    resources :articles
   # resources :candidates
+  match '/admin',   to: 'users#index',   via: 'get'
   match '/users',   to: 'users#index',   via: 'get'
   get 'landingpage/' => 'landingpage#index'
   match 'landingpage/new' => 'landingpage#create', via: :post
@@ -19,6 +20,8 @@ Rails.application.routes.draw do
   match 'candidates/new' => 'candidates#new', via: :get
   match 'candidates/edit/:id' => 'candidates#edit', via: :get
   devise_for :users, controllers: { confirmations: 'confirmations' }
+  match 'votes/new' => 'votes#create', via: :post
+  match 'votes/new' => 'plainpage#index', via: :get
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
